@@ -1,6 +1,6 @@
 # Kafka
 ## What is kafka
-This is a messaging queue
+This is a messaging queue(Distributed streaming platform)
 
 ### Usage
 Transfer data from one application/micro-service to another

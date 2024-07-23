@@ -1,0 +1,10 @@
+version: '3.3'
+
+services:
+  starrocks-cn:
+    image: registry.starrocks.io/starrocks/allin1-ubuntu:3.2.7
+    container_name: starrocks-allin1
+    ports:
+      - "8030:8030"
+      - "8040:8040"
+      - "9030:9030"

@@ -1,0 +1,28 @@
+{
+    "id": "4cc036a7-f01d-48b4-a55a-5e56257a5d81",
+    "pipeline_type": "WORKSPACE",
+    "clusters": [
+        {
+            "label": "default",
+            "node_type_id": "r5d.large",
+            "driver_node_type_id": "r5d.large",
+            "num_workers": 1
+        }
+    ],
+    "development": true,
+    "continuous": false,
+    "channel": "CURRENT",
+    "photon": false,
+    "libraries": [
+        {
+            "notebook": {
+                "path": "/Users/shashank@prophecy.io/healthcare-dlt-pipeline-project/healthcare_dlt_pipeline"
+            }
+        }
+    ],
+    "name": "healthcare-dlt-pipeline-demo",
+    "edition": "ADVANCED",
+    "storage": "dbfs:/pipelines/4cc036a7-f01d-48b4-a55a-5e56257a5d81",
+    "target": "default1",
+    "data_sampling": false
+}

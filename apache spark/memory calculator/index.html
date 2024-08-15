@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Spark Configuration Calculator</title>
+</head>
+<body>
+    <h1>Spark Configuration Calculator</h1>
+    <form action="/calculate" method="post">
+        <label for="ram_size">RAM Size (GB):</label><br>
+        <input type="text" id="ram_size" name="ram_size"><br>
+
+        <label for="cores_per_node">Cores per Node:</label><br>
+        <input type="text" id="cores_per_node" name="cores_per_node"><br>
+
+        <label for="cores_per_executor">Cores per Executor:</label><br>
+        <input type="text" id="cores_per_executor" name="cores_per_executor"><br>
+
+        <label for="number_of_nodes">Total Number of Nodes:</label><br>
+        <input type="text" id="number_of_nodes" name="number_of_nodes"><br>
+
+        <label for="memory_overhead">Memory Overhead (%):</label><br>
+        <input type="text" id="memory_overhead" name="memory_overhead"><br><br>
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>

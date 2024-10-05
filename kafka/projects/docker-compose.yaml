@@ -1,0 +1,41 @@
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    network_mode: "host"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: localhost:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  connect:
+    image: debezium/connect:latest
+    network_mode: "host"
+    environment:
+      - BOOTSTRAP_SERVERS=localhost:9092
+      - GROUP_ID=1
+      - CONFIG_STORAGE_TOPIC=my-connect-configs
+      - OFFSET_STORAGE_TOPIC=my-connect-offsets
+      - STATUS_STORAGE_TOPIC=my-connect-status
+      - KEY_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+      - VALUE_CONVERTER=org.apache.kafka.connect.json.JsonConverter
+      - PLUGIN_PATH=/kafka/connect
+      - CONNECT_REST_ADVERTISED_HOST_NAME=localhost
+      - CONNECT_GROUP_ID=kafka-connect-group
+      - CONNECT_CONFIG_STORAGE_TOPIC=connect-config
+      - CONNECT_OFFSET_STORAGE_TOPIC=connect-offsets
+      - CONNECT_STATUS_STORAGE_TOPIC=connect-statuses
+    depends_on:
+      - kafka

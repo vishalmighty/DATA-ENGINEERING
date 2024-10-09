@@ -1,0 +1,47 @@
+core-site.xml
+<property> 
+<name>fs.default.name</name> 
+<value>hdfs://localhost:9000</value> 
+</property> 
+
+hdfs-site.xml
+<property> 
+<name>dfs.replication</name> 
+<value>1</value> 
+</property> 
+<property> 
+<name>dfs.namenode.name.dir</name> 
+<value>file:/usr/local/hadoop_tmp/hdfs/namenode</value> 
+</property> 
+<property> 
+<name>dfs.datanode.data.dir</name> 
+<value>file:/usr/local/hadoop_tmp/hdfs/datanode</value> 
+</property> 
+
+marped-site.xml
+<property> 
+<name>mapreduce.framework.name</name> 
+<value>yarn</value> 
+</property>
+
+
+yarn-site.xml
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>localhost</value> <!-- Change this to actual hostname in production -->
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+        <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+
+    <property>
+        <name>yarn.nodemanager.resource.memory-mb</name>
+        <value>1024</value> <!-- Adjust this based on system memory -->
+    </property>

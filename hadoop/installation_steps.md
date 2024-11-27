@@ -15,8 +15,9 @@ export HADOOP_HDFS_HOME=$HADOOP_HOME
 export YARN_HOME=$HADOOP_HOME
 export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
 export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib"
-    6.Copy paste configurations of 4 files from my basic config files to the files in /hadoop-version/etc/hadoop/*
-    7.For marped-site.xml alone you need to create the file manually as same as marped-site.xml.template then paste the content
+    6. "source" ~/.bashrc to reflect changes done to bashrc file
+    7.Copy paste configurations of 4 files from my basic config files to the files in /hadoop-version/etc/hadoop/*
+    8.For marped-site.xml alone you need to create the file manually as same as marped-site.xml.template then paste the content
 
 ## To start hdfs
  1. Check for port confilct using "netstat -tuln | grep 8030" replace 8030 with configured ports
@@ -27,3 +28,14 @@ export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib"
 1. Check for port confilct using "netstat -tuln | grep 8030" replace 8030 with configured ports
 2. start-yarn.sh
 3. "jps -l " - See ResourceManager & NodeManager are running
+
+## To start any one service of yarn
+1. "sbin/yarn-daemons.sh start nodemanager/resourcemanager"
+
+## To handle issues in starting deamons
+1. Check the logs in $HADOOP_HOME/logs folder
+2. To get all the property param of any file, Google "filename.xml apache hadoop" eg:"yarn-site.xml apache hadoop" eg link:(https://hadoop.apache.org/docs/r2.7.3/hadoop-yarn/hadoop-yarn-common/yarn-default.xml)
+
+## Ports for monitoring
+The default port number to access all applications of cluster is 8088 (http://localhost:8088/)
+The default port number to access Hadoop is 50070 (http://localhost:50070/)

@@ -24,3 +24,11 @@ time.sleep(120)
 
 # Stop the Spark session - This will stop the cluster gracefully releasing all the resources in use
 spark.stop()
+# to read multiple csv
+csv_file_path = ['path to file1','path to file2']
+
+# to read all files in a specific folder
+csv_file_path = ['path to folder/folder_name/']
+
+# another way to read
+df = spark.read.format('csv').option(key='header',value=True).load(path='')

@@ -28,6 +28,11 @@ df1 = spark.createDataFrame(data=data,schema=schema)
 df1.show()
 df1.printSchema()
 
+# to deine data types - method II
+schema = StructType().add(field = 'id',data_type = IntergerType()).add(field='name',data_type=StringType())
+
+
+
 # to creaet with dictionary(keys become column name)
 
 data = [{'id':1,'name':'Vishu'},

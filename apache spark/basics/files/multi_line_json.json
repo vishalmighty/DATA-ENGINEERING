@@ -1,0 +1,11 @@
+[{"id":1,
+"name":"Vishu",
+"gender": "male",
+"salary":900000
+},
+{"id":2,
+"name":"rand1",
+"gender": "female",
+"salary":1000000
+}
+]

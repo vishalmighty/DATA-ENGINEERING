@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col,split
 
-spark = SparkSession.builder.appName("explode,split,array func explained").getOrCreate()
+spark = SparkSession.builder.appName("split func explained").getOrCreate()
 
 data = [(1,'vishu','pyspark,sql'),(2,'rand1','pyflink,sql')]
 

@@ -1,6 +1,5 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col,explode, map_keys, map_values
-from pyspark.sql.types import StructType, StructField, StringType, MapType, IntegerType
 
 
 spark = SparkSession.builder.appName("maptype func explained").getOrCreate()

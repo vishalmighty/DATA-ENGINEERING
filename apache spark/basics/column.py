@@ -1,7 +1,7 @@
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import lit,col
 
-spark = SparkSession.builder.appName("maptype func explained").getOrCreate()
+spark = SparkSession.builder.appName("col func explained").getOrCreate()
 data = [(1,2),(3,4)]
 df = spark.createDataFrame(data)
 

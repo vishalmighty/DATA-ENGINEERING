@@ -52,3 +52,14 @@ df.where("age > 18").show()  # String expression
 # df3 = df1.union(df2)
 #to remove duplicates
 # df3.distinct()
+
+
+#############################
+# select syntax
+# df.select('id','name')
+# df.select(df.id,df.name)
+# df.select(df['id'],df['name'])
+# df.select(col('id'),...)
+# df.select['id','name']
+# df.select('*')
+# df.select([col for col in df.columns]) # selects all columns

@@ -26,3 +26,8 @@ p1 = Person('vishu',3000)
 p2 = Person('randy',4000)
 
 print(p1.name)
+
+# create nested struct using row
+
+data = [Row(name="vishu",prop=Row(hair="black",eye='blue')),
+        Row(name="rand",prop=Row(hair="black",eye='white'))]

@@ -30,3 +30,7 @@ df2.show()
 inner_join = df1.join(df2, df1.id == df2.id, "inner")
 print("Inner Join:")
 inner_join.show()
+
+# leftsemi join - same as inner join for rows but give only columns in left table
+# leftanti join - opp to leftsemi get non matching rows and only columns in left table
+# self join - 

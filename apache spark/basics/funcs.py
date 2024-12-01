@@ -63,3 +63,16 @@ df.where("age > 18").show()  # String expression
 # df.select['id','name']
 # df.select('*')
 # df.select([col for col in df.columns]) # selects all columns
+
+#############################
+# df.fillna('unknown') -> all string columns with null rows are replaced by 'unknown'
+# df.fillna('unknown',['col_name_1']) -> specified string columns with null rows are replaced by 'unknown'
+# # df.na.fill() -> same as fill na
+
+#############################
+# sample() -> get  random sample from large dataset
+# fraction -> what percentage of data
+# seed -> value to make sure every time to get same random sample 
+# if seed value is same then samples will also be same
+# df1 = df.sample(random=0.1, seed=12)
+# df2 = df.sample(random=0.1, seed=12)

@@ -76,3 +76,9 @@ df.where("age > 18").show()  # String expression
 # if seed value is same then samples will also be same
 # df1 = df.sample(random=0.1, seed=12)
 # df2 = df.sample(random=0.1, seed=12)
+
+
+#############################
+# retrive all elements in a Dataframe as an Array if Row type to the driver node
+# returns - array
+# for big dataframe it may throw OOM error as it returns entire data to single node(driver)

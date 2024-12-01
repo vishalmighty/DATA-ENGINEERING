@@ -23,3 +23,10 @@ result = spark.sql("SELECT id, name, salary FROM employees WHERE salary > 5500")
 
 # Step 5: Show the result
 result.show()
+
+
+########################
+# above is only stored/available in current session
+# the below one is avaiable accross all the sessions within the same spark context/application
+# use createOrReplaceGlobalTempView
+# but for all tables use global_temp.table_name

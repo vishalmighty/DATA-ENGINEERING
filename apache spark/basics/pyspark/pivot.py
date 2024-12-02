@@ -1,4 +1,4 @@
-# pivot - ro rotate data in one column to multiple columns
+# pivot - to rotate data in one column to multiple columns
 from pyspark.sql import SparkSession
 
 # Create SparkSession

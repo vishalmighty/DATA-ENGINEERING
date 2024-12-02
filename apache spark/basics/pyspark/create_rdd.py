@@ -9,3 +9,8 @@ df = rdd.toDF()
 df = rdd.toDF(scehma=['id','name'])
 
 df = spark.createDataFrame(rdd,schema=['id','name'])
+
+# to convert dataframe to rdd
+
+df.rdd.functions
+df.rdd.map

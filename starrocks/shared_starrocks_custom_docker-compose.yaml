@@ -1,0 +1,68 @@
+services:
+  starrocks-fe:
+    image: starrocks/fe-ubuntu:3.2.7
+    hostname: starrocks-fe
+    container_name: starrocks-fe
+    user: root
+    command:
+      - /bin/bash
+      - -c
+      - |
+        echo "# enable shared data, set storage type, set endpoint" >> /opt/starrocks/fe/conf/fe.conf
+        echo "run_mode = shared_data" >> /opt/starrocks/fe/conf/fe.conf
+        echo "cloud_native_storage_type = S3" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_endpoint = https://storage.googleapis.com" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_region = asia-south1-kind-of-region-here" >> /opt/starrocks/fe/conf/fe.conf
+
+        echo "# set the path in GCS" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_path = give-your-gcs-bucket-name-here/poc_starrocks_data" >> /opt/starrocks/fe/conf/fe.conf
+
+        echo "# credentials for MinIO object read/write" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_access_key = AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA orginal creds here" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_secret_key = BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB orginal creds here" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_use_instance_profile = false" >> /opt/starrocks/fe/conf/fe.conf
+        echo "aws_s3_use_aws_sdk_default_behavior = false" >> /opt/starrocks/fe/conf/fe.conf
+
+        echo "# Set this to false if you do not want default" >> /opt/starrocks/fe/conf/fe.conf
+        echo "# storage created in the object storage using" >> /opt/starrocks/fe/conf/fe.conf
+        echo "# the details provided above" >> /opt/starrocks/fe/conf/fe.conf
+        echo "enable_load_volume_from_conf = true" >> /opt/starrocks/fe/conf/fe.conf
+
+        /opt/starrocks/fe/bin/start_fe.sh --host_type FQDN
+    ports:
+      - 8030:8030
+      - 9020:9020
+      - 9030:9030
+    healthcheck:
+      test: 'mysql -u root -h starrocks-fe -P 9030 -e "show frontends\G" |grep "Alive: true"'
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  starrocks-cn:
+    image: starrocks/cn-ubuntu:3.2.7
+    command:
+      - /bin/bash
+      - -c
+      - |
+        sleep 15s;
+        ulimit -u 65535;
+        ulimit -n 65535;
+        mysql --connect-timeout 2 -h starrocks-fe -P9030 -uroot -e "ALTER SYSTEM ADD COMPUTE NODE \"starrocks-cn:9050\";"
+        /opt/starrocks/cn/bin/start_cn.sh
+    environment:
+      - HOST_TYPE=FQDN
+    ports:
+      - 8040:8040
+    hostname: starrocks-cn
+    container_name: starrocks-cn
+    user: root
+    depends_on:
+      starrocks-fe:
+        condition: service_healthy
+        restart: true
+    healthcheck:
+      test: 'mysql -u root -h starrocks-fe -P 9030 -e "SHOW COMPUTE NODES\G" |grep "Alive: true"'
+      interval: 10s
+      timeout: 5s
+      retries: 3

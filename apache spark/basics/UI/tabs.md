@@ -1,0 +1,6 @@
+-> Stages
+    - Contains stages and tasks
+-> SQL/Query
+    - contain query execution plan
+-> Storage
+    - Contain details about occupied/free memory

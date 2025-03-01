@@ -78,7 +78,7 @@ WITH base AS (
 agg_base AS (
     SELECT seller_id, buyer_id, COUNT(*) AS no_of_transactions
     FROM base
-    WHERE seller_id % 2 = 1 -- Ensures only the first transaction_id (seller) is selected
+    WHERE transaction_id % 2 = 1 -- Ensures only the first transaction_id (seller) is selected
     GROUP BY seller_id, buyer_id
 )
 

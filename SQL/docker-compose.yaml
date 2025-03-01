@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql-container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: temp@password  # Change this for security
+      MYSQL_DATABASE: algoaddicts        # Default database to create
+      MYSQL_USER: myuser          # Non-root user
+      MYSQL_PASSWORD: mypassword  # Password for non-root user
+    ports:
+      - "3306:3306"  # Host:Container
+    volumes:
+      - mysql_data:/var/lib/mysql  # Persistent storage
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_data:  # Named volume for data persistence
+
+networks:
+  mysql_network:  # Custom network
